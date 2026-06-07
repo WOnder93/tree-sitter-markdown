@@ -25,10 +25,10 @@ class BuildExt(build_ext):
             ext.extra_compile_args = ["-std=c11", "-fvisibility=hidden"]
         else:
             ext.extra_compile_args = ["/std:c11", "/utf-8"]
-        if path.exists("src/tree-sitter-markdown/scanner.c"):
-            ext.sources.append("src/tree-sitter-markdown/scanner.c")
-        if path.exists("src/tree-sitter-markdown-inline/scanner.c"):
-            ext.sources.append("src/tree-sitter-markdown-inline/scanner.c")
+        if path.exists("tree-sitter-markdown/src/scanner.c"):
+            ext.sources.append("tree-sitter-markdown/src/scanner.c")
+        if path.exists("tree-sitter-markdown-inline/src/scanner.c"):
+            ext.sources.append("tree-sitter-markdown-inline/src/scanner.c")
         if ext.py_limited_api:
             ext.define_macros.append(("Py_LIMITED_API", "0x030A0000"))
         super().build_extension(ext)
@@ -46,8 +46,8 @@ class EggInfo(egg_info):
     def find_sources(self):
         super().find_sources()
         self.filelist.recursive_include("queries", "*.scm")
-        self.filelist.include("src/tree-sitter-markdown/tree_sitter/*.h")
-        self.filelist.include("src/tree-sitter-markdown-inline/tree_sitter/*.h")
+        self.filelist.include("tree-sitter-markdown/src/tree_sitter/*.h")
+        self.filelist.include("tree-sitter-markdown-inline/src/tree_sitter/*.h")
 
 
 setup(
